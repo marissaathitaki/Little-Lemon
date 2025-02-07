@@ -1,10 +1,30 @@
-function Home() {
+import React from "react";
+import Navbar from "../layouts/Navbar";
+import Header from "../layouts/Header";
+import Menu from "../layouts/Menu";
+import Testimonials from "../layouts/Testimonials";
+import About from "../layouts/About";
+import Footer from "../layouts/Footer";
+
+const Home = () => {
   return (
     <div>
-      <h1>Welcome to Little Lemon</h1>
-      <p>Discover our delicious Mediterranean dishes.</p>
+      <Navbar />
+      <Header />
+      <main>
+        <section id="menu">
+          <Menu />
+        </section>
+        <section id="testimonials">
+          <Testimonials />
+        </section>
+        <section id="about">
+          <About />
+        </section>
+      </main>
+      <Footer />
     </div>
   );
-}
+};
 
 export default Home;
