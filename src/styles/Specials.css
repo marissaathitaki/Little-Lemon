@@ -1,0 +1,29 @@
+.specials {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    height: auto;
+    align-items: baseline;
+    margin-top: 50px;
+    margin-left: 40px;
+}
+
+.specials-list {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+
+}
+
+.specials h2 {
+    grid-area: 1 / 1 / 2 / -1;
+}
+.menu-button {
+    grid-row: 1;
+    grid-column: 3;
+    align-self: center;
+}
+
+
+
