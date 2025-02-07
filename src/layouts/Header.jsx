@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import Button from "../components/Button";
 import bannerImage from "../assets/banner.jpg";
 import "../styles/Header.css";
 
@@ -13,9 +13,9 @@ function Header() {
           We are a family owned Mediterranean restaurant, focused on traditional
           recipes served with a modern twist.
         </p>
-        <Link to="/Booking">
-          <button>Book a table</button>
-        </Link>
+        <div className="header-buttons">
+          <Button to="/Booking">Book a table</Button>
+        </div>
       </div>
       <div className="banner-image">
         <img src={bannerImage} alt="promo-banner" />
