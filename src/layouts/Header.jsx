@@ -13,7 +13,7 @@ function Header() {
           We are a family owned Mediterranean restaurant, focused on traditional
           recipes served with a modern twist.
         </p>
-        <div className="header-buttons">
+        <div className="header-button">
           <Button to="/Booking">Book a table</Button>
         </div>
       </div>

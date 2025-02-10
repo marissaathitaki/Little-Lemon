@@ -1,5 +1,8 @@
 import React from "react";
 import Button from "../components/Button";
+import saladImg from "../assets/salad.jpg";
+import bruschettaImg from "../assets/bruchetta.png";
+import dessertImg from "../assets/dessert.jpg";
 import "../styles/Specials.css";
 
 const specialsData = [
@@ -7,22 +10,25 @@ const specialsData = [
     id: 1,
     name: "Greek Salad",
     price: "$12.99",
-    description: "A fresh mix of lettuce, olives, and feta cheese.",
-    img: "../assets/salad.jpg",
+    description:
+      "The famous greek salad of crispy lettuce, peppers, olives and our Chicago style feta cheese, garnished with crunchy garlic and rosemary croutons. ",
+    img: saladImg,
   },
   {
     id: 2,
     name: "Bruschetta",
     price: "$8.99",
-    description: "Toasted bread with fresh tomato and basil.",
-    img: "../assets/bruchetta.png",
+    description:
+      "Our Bruschetta is made from grilled bread that has been smeared with garlic and seasoned with salt and olive oil. ",
+    img: bruschettaImg,
   },
   {
     id: 3,
     name: "Lemon Dessert",
     price: "$5.99",
-    description: "A zesty lemon cake with a hint of sweetness.",
-    img: "../assets/dessert.jpg",
+    description:
+      "This comes straight from grandma’s recipe book, every last ingredient has been sourced and is as authentic as can be imagined.",
+    img: dessertImg,
   },
 ];
 
@@ -35,18 +41,18 @@ const Specials = ({ specials = specialsData }) => {
       </div>
       <div className="specials-list">
         {specials.map((item) => (
-          <div key={item.id} className="special-card">
-            <div>
+          <div key={item.id} className="specials-card">
+            <div className="card-img">
               <img src={item.img} alt={item.name} />
             </div>
-            <div>
+            <div className="dish-price">
               <h3>{item.name}</h3>
               <p>{item.price}</p>
             </div>
-            <div>
+            <div className="description">
               <p>{item.description}</p>
             </div>
-            <div>
+            <div className="order">
               <p>Order Online</p>
               <svg
                 xmlns="http://www.w3.org/2000/svg"

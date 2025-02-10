@@ -55,6 +55,7 @@
     grid-area: 1/8/5/12;
     justify-content: flex-start;
     margin-top: 90px;
+    margin-left: 30px;
 }
 
 .banner-image img{
@@ -63,6 +64,17 @@
     height: auto;
     max-height: 450px;
     border-radius: 15px;
+}
+
+.header-button Button {
+    padding: 15px;
+    margin-top: 40px;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+}
+
+.header-button Button:hover {
+    background-color: #fff;
+    color: #4c5c54;
 }
 
 @media (max-width: 700px) {

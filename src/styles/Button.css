@@ -1,12 +1,7 @@
 .button{
-    margin-top: 8vh;
-    padding: 10px 15px;
     font-size: 16px;
     font-family: 'Karla', sans-serif;
     font-weight: 700;
-    width: 70%;
-    max-width: 250px;
-    min-width: 120px;
     white-space: nowrap;
     background-color: #f3cb14;
     color: #4c5c54;
@@ -16,7 +11,3 @@
     transition: 0.3s ease-in-out;
 }
 
-.button:hover {
-    background-color: #fff;
-    color: #4c5c54;
-}

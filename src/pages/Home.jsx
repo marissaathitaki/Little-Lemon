@@ -8,23 +8,29 @@ import Footer from "../layouts/Footer";
 
 const Home = () => {
   return (
-    <div>
+    <div className="home">
       <Navbar />
       <Header />
-      <main>
-        <section id="specials">
-          <Specials />
-        </section>
-        <section id="testimonials">
-          <Testimonials />
-        </section>
-        <section id="about">
-          <About />
-        </section>
-      </main>
+      <Specials />
+      <Testimonials />
+      <About />
       <Footer />
     </div>
   );
 };
 
 export default Home;
+
+{
+  /* <main>
+        <section id="specials">
+          
+        </section>
+        <section id="testimonials">
+          
+        </section>
+        <section id="about">
+          
+        </section>
+      </main> */
+}

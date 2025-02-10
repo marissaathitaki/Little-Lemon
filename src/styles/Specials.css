@@ -1,11 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Markazi+Text:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Karla:wght@400;700&display=swap');
+
 .specials {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 20px;
     height: auto;
-    align-items: baseline;
-    margin-top: 50px;
-    margin-left: 40px;
+    padding-top: 150px;
+    padding-left: 120px;
+    padding-right: 120px;
+    padding-bottom: 50px;
+    justify-items: center;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
 }
 
 .specials-list {
@@ -13,17 +19,133 @@
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 20px;
-
+    height: auto;
+    margin: 50px;
+    justify-items: center;
 }
 
 .specials h2 {
-    grid-area: 1 / 1 / 2 / -1;
+    grid-column: 1 / 2;
+    font-family: 'Markazi Text', serif;
+    font-size: 40px;
+    justify-self: flex-end;
+    white-space: nowrap;
 }
+
 .menu-button {
     grid-row: 1;
     grid-column: 3;
     align-self: center;
 }
 
+.menu-button Button {
+    padding: 15px;
+    margin-left: -6vw;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+.menu-button Button:hover {
+    background-color: #4c5c54;
+    color: #ffffff;
+}
 
+.specials-card {
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr;
+    gap: 10px;
+    width: 300px;
+    height: 400px;
+    margin: 20px;
+    background-color: #f7db5f;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
 
+.card-img{
+    width: 100%;
+    height: 200px;
+}
+
+.card-img img {
+    width: 100%;
+    height: 100%;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    object-fit: cover;
+}
+
+.specials-list .dish-price {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.specials-list .dish-price h3 {
+    font-family: "Markazi Text", serif;
+    font-size: 30px;
+}
+
+.specials-list .dish-price p {
+    font-family: "Karla", sans-serif;
+    font-size: 18px;
+}
+
+.specials-card .description p{
+    font-family: "Karla", sans-serif;
+    font-size: 16px;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-top: -30px;
+}
+
+.specials-card .order {
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+    padding-bottom: 5px;
+}
+
+.specials-card .order svg {
+    padding-left: 5px;
+    fill: #000000;
+}
+
+.specials-card .order svg:hover {
+    fill: #4c5c54;
+    cursor: pointer;
+}
+
+@media (max-width: 1050px) {
+    .specials {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 50px 20px;
+    }
+
+    .specials h2 {
+        justify-self: center;
+        text-align: center;
+    }
+
+    .menu-button {
+        align-self: center;
+        margin-top: 20px;
+        margin-left: 0px;
+    }
+
+    .specials-list {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+        width: 100%;
+    }
+
+    .specials-card {
+        width: 90%;
+        max-width: 350px;
+        height: 400px;
+    }
+}
