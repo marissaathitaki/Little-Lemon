@@ -1,0 +1,118 @@
+@import url('https://fonts.googleapis.com/css2?family=Markazi+Text:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Karla:wght@400;700&display=swap');
+
+.about {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    justify-items: center;
+    margin: auto;
+    padding: 80px 0;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+}
+
+.about .about-text {
+    padding-left: 8vw;
+    padding-right: 1vw;
+}
+
+.about h2 {
+    font-size: 3rem;
+    font-family: 'Markazi Text', serif;
+    font-weight: 700;
+    color: #f3cb14;
+    white-space: nowrap;
+}
+
+.about .about-text h3 {
+    font-size: 2rem;
+    font-family: 'Markazi Text', serif;
+    font-weight: 500;
+    color: #4c5c54;
+    margin-top: -15px;
+}
+
+.about p {
+    max-width: 500px;
+    line-height: 1.6;
+    font-size: 1rem;
+    font-family: 'Karla', sans-serif;
+    font-style: italic;
+    text-align: left;
+    color: #4c5c54;
+    padding-top: 30px;
+}
+
+.about img {
+    width: 300px;
+    height: 300px;
+    object-fit: cover;
+    position: absolute;
+}
+
+.about .img-container {
+    position: relative;
+    width: 500px;
+    height: 500px;
+}
+
+.Img1 {
+    top: 200px;
+    left: 0px;
+    border-radius: 3%;
+    z-index: 1;
+}
+
+.Img2 {
+    top: 0;
+    left: 200px;
+    border-radius: 3%;
+}
+
+@media (max-width: 1090px){
+    .about {
+        grid-template-columns: 1fr;
+    }
+
+    .about .about-text {
+        padding-bottom: 4vh;
+    }
+}
+
+@media (max-width: 550px) {
+    .about {
+        padding: 40px 10px;
+    }
+
+    .about h2 {
+        font-size: 2rem;
+    }
+
+    .about .about-text h3 {
+        font-size: 1.5rem;
+    }
+
+    .about p {
+        font-size: 0.9rem;
+    }
+
+    .about img {
+        width: 200px;
+        height: 200px;
+    }
+
+    .about .img-container {
+        width: 300px;
+        height: 300px;
+    }
+
+    .Img1 {
+        top: 110px;
+        left: -10px;
+    }
+
+    .Img2 {
+        top: 0;
+        left: 130px;
+    }
+}
