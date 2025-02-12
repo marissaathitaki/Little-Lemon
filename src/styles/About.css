@@ -77,11 +77,21 @@
     .about .about-text {
         padding-bottom: 4vh;
     }
+
+    .Img1 {
+        top: 110px;
+        left: 30px;
+    }
+
+    .Img2 {
+        top: 0;
+        left: 230px;
+    }
 }
 
 @media (max-width: 550px) {
     .about {
-        padding: 40px 10px;
+        padding: 80px 10px;
     }
 
     .about h2 {
@@ -94,6 +104,7 @@
 
     .about p {
         font-size: 0.9rem;
+        padding-right: 20px;
     }
 
     .about img {
@@ -108,11 +119,11 @@
 
     .Img1 {
         top: 110px;
-        left: -10px;
+        left: 0px;
     }
 
     .Img2 {
         top: 0;
-        left: 130px;
+        left: 110px;
     }
 }
