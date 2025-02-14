@@ -1,10 +1,14 @@
-function Booking() {
+import React from "react";
+import Navbar from "../components/Navbar";
+import BookingForm from "../components/BookingForm";
+
+const Booking = () => {
   return (
-    <div>
-      <h1>Welcome to Little Lemon's Booking Page</h1>
-      <p>Reserve a table now.</p>
+    <div className="BookingPage">
+      <Navbar />
+      <BookingForm />
     </div>
   );
-}
+};
 
 export default Booking;

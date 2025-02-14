@@ -1,0 +1,214 @@
+import { useState } from "react";
+import Button from "./Button";
+import "../styles/Booking.css";
+
+const generateTimeSlots = (start, end) => {
+  if (!start || !end) {
+    console.error("Invalid start or end time:", start, end);
+    return [];
+  }
+
+  const times = [];
+  let [hour, minute] = start.split(":").map(Number);
+
+  while (
+    hour < Number(end.split(":")[0]) ||
+    (hour === Number(end.split(":")[0]) && minute <= Number(end.split(":")[1]))
+  ) {
+    const ampm = hour >= 12 ? "PM" : "AM";
+    const formattedHour = hour % 12 === 0 ? 12 : hour % 12;
+    const formattedTime = `${formattedHour}:${minute
+      .toString()
+      .padStart(2, "0")} ${ampm}`;
+    times.push(formattedTime);
+    minute += 30;
+    if (minute === 60) {
+      minute = 0;
+      hour += 1;
+    }
+  }
+
+  return times;
+};
+
+const availableTimes = {
+  0: generateTimeSlots("10:00", "22:00"),
+  1: generateTimeSlots("11:00", "21:00"),
+  2: generateTimeSlots("11:00", "21:00"),
+  3: generateTimeSlots("11:00", "21:00"),
+  4: generateTimeSlots("11:00", "21:00"),
+  5: generateTimeSlots("11:00", "21:00"),
+  6: generateTimeSlots("10:00", "22:00"),
+};
+
+function Booking() {
+  const [firstName, setFirstName] = useState({ value: "", isTouched: false });
+  const [lastName, setLastName] = useState({ value: "", isTouched: false });
+  const [selectedDate, setSelectedDate] = useState("");
+  const [selectedTime, setSelectedTime] = useState("");
+  const [occasion, setOccasion] = useState("");
+  const [email, setEmail] = useState({ value: "", isTouched: false });
+  const [phone, setPhone] = useState({ value: "", isTouched: false });
+  const [number, setNumber] = useState("1");
+
+  const getIsFormValid = () => {
+    return (
+      firstName.value &&
+      lastName.value &&
+      validateEmail(email.value) &&
+      phone.value &&
+      lastName.value.length >= 3
+    );
+  };
+
+  const validateEmail = (email) => {
+    return /\S+@\S+\.\S+/.test(email);
+  };
+
+  const clearForm = () => {
+    setFirstName({ value: "", isTouched: false });
+    setLastName({ value: "", isTouched: false });
+    setEmail({ value: "", isTouched: false });
+    setSelectedDate("");
+    setSelectedTime("");
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    alert("Booking confirmed!");
+    clearForm();
+  };
+
+  const getWeekday = (date) => {
+    if (!date) return null;
+    return new Date(date).getDay();
+  };
+
+  const weekday = getWeekday(selectedDate);
+  const times = weekday !== null ? availableTimes[weekday] : [];
+
+  return (
+    <div className="booking">
+      <h2>Book your table!</h2>
+      <form onSubmit={handleSubmit}>
+        <div className="form-section">
+          <div className="date-column">
+            <div className="date">
+              <label>
+                Select date <sup>*</sup>
+              </label>
+              <input
+                type="date"
+                value={selectedDate}
+                onChange={(e) => setSelectedDate(e.target.value)}
+                required
+              />
+            </div>
+            <div className="people">
+              <label>
+                Number of people <sup>*</sup>
+              </label>
+              <select
+                className="number"
+                value={number}
+                onChange={(e) => setNumber(e.target.value)}
+              >
+                {[...Array(12)].map((_, i) => (
+                  <option key={i + 1} value={i + 1}>
+                    {i + 1}
+                  </option>
+                ))}
+              </select>
+            </div>
+            <div className="first">
+              <label>
+                First name <sup>*</sup>
+              </label>
+              <input
+                value={firstName.value}
+                onChange={(e) =>
+                  setFirstName({ ...firstName, value: e.target.value })
+                }
+                placeholder=""
+              />
+            </div>
+            <div className="email">
+              <label>
+                Email address <sup>*</sup>
+              </label>
+              <input
+                value={email.value}
+                onChange={(e) => setEmail({ ...email, value: e.target.value })}
+              />
+            </div>
+          </div>
+          <div className="time-column">
+            <div className="time">
+              <label>
+                Select time <sup>*</sup>
+              </label>
+              <select
+                className="time-input"
+                value={selectedTime}
+                onChange={(e) => setSelectedTime(e.target.value)}
+                required
+                disabled={!selectedDate}
+              >
+                <option value="">Select a time</option>
+                {times.map((slot) => (
+                  <option key={slot} value={slot}>
+                    {slot}
+                  </option>
+                ))}
+              </select>
+            </div>
+            <div className="occasion">
+              <label>Occasion </label>
+              <select
+                className="occasion-input"
+                value={occasion}
+                onChange={(e) => setOccasion(e.target.value)}
+              >
+                <option>Birthday</option>
+                <option>Anniversary</option>
+                <option>Proposal</option>
+                <option>Business</option>
+              </select>
+            </div>
+            <div className="last">
+              <label>
+                Last name <sup>*</sup>
+              </label>
+              <input
+                value={lastName.value}
+                onChange={(e) =>
+                  setLastName({ ...LastName, value: e.target.value })
+                }
+                placeholder=""
+              />
+            </div>
+            <div className="phone">
+              <label>
+                Phone Number <sup>*</sup>
+              </label>
+              <input
+                value={phone.value}
+                onChange={(e) => setPhone({ ...phone, value: e.target.value })}
+              />
+            </div>
+          </div>
+          <div className="buttons">
+            <Button type="submit" disabled={!getIsFormValid()}>
+              Submit
+            </Button>
+            <Button type="button" onClick={clearForm}>
+              Cancel
+            </Button>
+          </div>
+        </div>
+      </form>
+    </div>
+  );
+}
+
+export default Booking;

@@ -1,0 +1,121 @@
+@import url('https://fonts.googleapis.com/css2?family=Markazi+Text:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Karla:wght@400;700&display=swap');
+
+h2 {
+  display: flex;
+  justify-self: center;
+  font-family: "Markazi Text", serif;
+  font-size: 3rem;
+  margin-top: 80px;
+  color: #4c5c54
+}
+
+.form-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  width: 70%;
+  margin: 80px auto;
+  justify-items: center;
+  justify-content: center;
+  column-gap: 10vw;
+  row-gap: 15vh;
+}
+
+.date-column, .time-column {
+  display: flex;
+  flex-direction: column;
+  gap: 5vh;
+}
+
+.date-column {
+  justify-self: flex-end;
+}
+
+.time-column {
+  justify-self: flex-start;
+}
+
+.date, .time, .people, .occasion, .first, .last, .email, .phone {
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  font-family: "Karla", serif;
+  font-size: 1.2rem;
+  color: #4c5c54;
+}
+
+input, select {
+  all: unset;
+  width: 300px;
+  height: 50px;
+  font-family: "Karla", sans-serif;
+  background-color: #fde25a;
+  border-radius: 10px;
+  box-sizing: border-box;
+  line-height: 50px;
+  padding: 0 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2)
+}
+
+.number {
+  width: 80px;  
+  padding-left: 20px;
+}
+
+.occasion-input {
+  width: 110px;
+}
+
+input:focus, select:focus {
+  border: 1.5px solid #4c5c54;
+}
+
+.buttons {
+  grid-column: 1 / -1;
+  display: flex;
+  justify-content: center;
+  gap: 50px;
+}
+
+.buttons Button {
+  width: 200px;
+  height: 40px;
+  background-color: #4c5c54;
+  color: #ffffff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2)
+}
+
+.buttons Button:hover {
+  background-color: #F4CE14;
+  color: #4c5c54;
+}
+
+select option {
+  background: #fde25a;
+  color: #4c5c54;
+  font-size: 1rem;
+  border-radius: 15px;
+}
+
+
+@media (max-width: 720px) {
+  .form-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  input, select {
+    width:100%;
+  }
+
+  .buttons {
+    display: flex;
+    flex-direction: column;
+    place-items: center;
+    gap: 30px;
+  }
+}

@@ -1,6 +1,8 @@
-import { Link } from "react-router-dom";
+import { Link as RouterLink } from "react-router-dom";
+import { Link as ScrollLink } from "react-scroll";
 import { useState, useEffect } from "react";
 import "../styles/Navbar.css";
+import mainlogo from "../assets/main_logo.png";
 
 function Nav() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -21,9 +23,9 @@ function Nav() {
 
   return (
     <nav className={`nav ${menuOpen ? "open" : ""}`}>
-      <Link to="/">
-        <img className="main_logo" src="/main_logo.png" alt="lemon logo" />
-      </Link>
+      <RouterLink to="/">
+        <img className="main_logo" src={mainlogo} alt="lemon logo" />
+      </RouterLink>
       <button className="hamburger" onClick={toggleMenu}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -37,26 +39,24 @@ function Nav() {
       </button>
       <ul className="nav-list">
         <li>
-          <Link to="/">Home</Link>
+          <RouterLink to="/">Home</RouterLink>
         </li>
         <li>
-          <Link to="about" smooth="true" duration={500}>
+          <ScrollLink to="about" smooth={true} duration={600}>
             About
-          </Link>
+          </ScrollLink>
         </li>
         <li>
-          <Link to="menu" smooth="true" duration={500}>
-            Menu
-          </Link>
+          <RouterLink to="menu">Menu</RouterLink>
         </li>
         <li>
-          <Link to="/reservations">Reservations</Link>
+          <RouterLink to="/reservations">Reservations</RouterLink>
         </li>
         <li>
-          <Link to="/orderonline">Order Online</Link>
+          <RouterLink to="/orderonline">Order Online</RouterLink>
         </li>
         <li>
-          <Link to="/login">Login</Link>
+          <RouterLink to="/login">Login</RouterLink>
         </li>
       </ul>
       <ul className={`sidebar ${menuOpen ? "open" : ""}`}>
@@ -72,34 +72,34 @@ function Nav() {
           </svg>
         </button>
         <li>
-          <Link to="/" onClick={toggleMenu}>
+          <RouterLink to="/" onClick={toggleMenu}>
             Home
-          </Link>
+          </RouterLink>
         </li>
         <li>
-          <Link to="/about" onClick={toggleMenu}>
+          <ScrollLink to="about" onClick={toggleMenu}>
             About
-          </Link>
+          </ScrollLink>
         </li>
         <li>
-          <Link to="/menu" onClick={toggleMenu}>
+          <RouterLink to="/menu" onClick={toggleMenu}>
             Menu
-          </Link>
+          </RouterLink>
         </li>
         <li>
-          <Link to="/reservations" onClick={toggleMenu}>
+          <RouterLink to="/reservations" onClick={toggleMenu}>
             Reservations
-          </Link>
+          </RouterLink>
         </li>
         <li>
-          <Link to="/orderonline" onClick={toggleMenu}>
+          <RouterLink to="/orderonline" onClick={toggleMenu}>
             Order Online
-          </Link>
+          </RouterLink>
         </li>
         <li>
-          <Link to="/login" onClick={toggleMenu}>
+          <RouterLink to="/login" onClick={toggleMenu}>
             Login
-          </Link>
+          </RouterLink>
         </li>
       </ul>
     </nav>

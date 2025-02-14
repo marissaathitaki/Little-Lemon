@@ -17,10 +17,9 @@
 .header > div:first-child {
     grid-column: 2 / 7;
     grid-row: 1 / 5;
-    display: grid;
+    display: flex;
     flex-direction: column;
     padding: 20px;
-    align-self: center;
     align-items: flex-start;
 }
 
@@ -30,6 +29,7 @@
     font-weight: 700;
     color: #f3cb14;
     white-space: nowrap;
+    margin-top: -20px;
     z-index: 1;
 }
 

@@ -1,5 +1,5 @@
 import React from "react";
-import Navbar from "../layouts/Navbar";
+import Navbar from "../components/Navbar";
 import Header from "../layouts/Header";
 import Specials from "../layouts/Specials";
 import Testimonials from "../layouts/Testimonials";
@@ -9,28 +9,18 @@ import Footer from "../layouts/Footer";
 const Home = () => {
   return (
     <div className="home">
-      <Navbar />
+      <div id="home">
+        <Navbar />
+      </div>
       <Header />
       <Specials />
       <Testimonials />
-      <About />
+      <div id="about">
+        <About />
+      </div>
       <Footer />
     </div>
   );
 };
 
 export default Home;
-
-{
-  /* <main>
-        <section id="specials">
-          
-        </section>
-        <section id="testimonials">
-          
-        </section>
-        <section id="about">
-          
-        </section>
-      </main> */
-}
