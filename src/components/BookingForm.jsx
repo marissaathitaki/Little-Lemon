@@ -1,47 +1,9 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Button from "./Button";
 import "../styles/Booking.css";
+import { fetchAPI } from "../utils/mockAPI"; // Import the fetchAPI function
 
-const generateTimeSlots = (start, end) => {
-  if (!start || !end) {
-    console.error("Invalid start or end time:", start, end);
-    return [];
-  }
-
-  const times = [];
-  let [hour, minute] = start.split(":").map(Number);
-
-  while (
-    hour < Number(end.split(":")[0]) ||
-    (hour === Number(end.split(":")[0]) && minute <= Number(end.split(":")[1]))
-  ) {
-    const ampm = hour >= 12 ? "PM" : "AM";
-    const formattedHour = hour % 12 === 0 ? 12 : hour % 12;
-    const formattedTime = `${formattedHour}:${minute
-      .toString()
-      .padStart(2, "0")} ${ampm}`;
-    times.push(formattedTime);
-    minute += 30;
-    if (minute === 60) {
-      minute = 0;
-      hour += 1;
-    }
-  }
-
-  return times;
-};
-
-const availableTimes = {
-  0: generateTimeSlots("10:00", "22:00"),
-  1: generateTimeSlots("11:00", "21:00"),
-  2: generateTimeSlots("11:00", "21:00"),
-  3: generateTimeSlots("11:00", "21:00"),
-  4: generateTimeSlots("11:00", "21:00"),
-  5: generateTimeSlots("11:00", "21:00"),
-  6: generateTimeSlots("10:00", "22:00"),
-};
-
-function Booking() {
+function BookingForm({ availableTimes, dispatch }) {
   const [firstName, setFirstName] = useState({ value: "", isTouched: false });
   const [lastName, setLastName] = useState({ value: "", isTouched: false });
   const [selectedDate, setSelectedDate] = useState("");
@@ -50,6 +12,15 @@ function Booking() {
   const [email, setEmail] = useState({ value: "", isTouched: false });
   const [phone, setPhone] = useState({ value: "", isTouched: false });
   const [number, setNumber] = useState("1");
+  const [availableTimesForDate, setAvailableTimesForDate] = useState([]);
+
+  useEffect(() => {
+    if (selectedDate) {
+      const date = new Date(selectedDate);
+      const times = fetchAPI(date);
+      setAvailableTimesForDate(times);
+    }
+  }, [selectedDate]);
 
   const getIsFormValid = () => {
     return (
@@ -79,13 +50,11 @@ function Booking() {
     clearForm();
   };
 
-  const getWeekday = (date) => {
-    if (!date) return null;
-    return new Date(date).getDay();
+  const handleDateChange = (e) => {
+    const newDate = e.target.value;
+    setSelectedDate(newDate);
+    dispatch({ type: "UPDATE_DATE", date: newDate });
   };
-
-  const weekday = getWeekday(selectedDate);
-  const times = weekday !== null ? availableTimes[weekday] : [];
 
   return (
     <div className="booking">
@@ -100,7 +69,7 @@ function Booking() {
               <input
                 type="date"
                 value={selectedDate}
-                onChange={(e) => setSelectedDate(e.target.value)}
+                onChange={handleDateChange}
                 required
               />
             </div>
@@ -154,8 +123,8 @@ function Booking() {
                 required
                 disabled={!selectedDate}
               >
-                <option value="">Select a time</option>
-                {times.map((slot) => (
+                <option value=""> </option>
+                {availableTimesForDate.map((slot) => (
                   <option key={slot} value={slot}>
                     {slot}
                   </option>
@@ -169,6 +138,7 @@ function Booking() {
                 value={occasion}
                 onChange={(e) => setOccasion(e.target.value)}
               >
+                <option>Not a special occasion</option>
                 <option>Birthday</option>
                 <option>Anniversary</option>
                 <option>Proposal</option>
@@ -182,7 +152,7 @@ function Booking() {
               <input
                 value={lastName.value}
                 onChange={(e) =>
-                  setLastName({ ...LastName, value: e.target.value })
+                  setLastName({ ...lastName, value: e.target.value })
                 }
                 placeholder=""
               />
@@ -211,4 +181,4 @@ function Booking() {
   );
 }
 
-export default Booking;
+export default BookingForm;
