@@ -102,6 +102,7 @@ select option {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    gap: 35px;
   }
 
   input, select {

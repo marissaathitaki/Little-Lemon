@@ -56,10 +56,19 @@ const Booking = () => {
     initializeTimes
   );
 
+  const handleDateChange = (newDate) => {
+    setSelectedDate(newDate);
+    dispatch({ type: "UPDATE_DATE", date: newDate });
+  };
+
   return (
     <div>
       <Navbar />
-      <BookingForm availableTimes={availableTimes} dispatch={dispatch} />
+      <BookingForm
+        availableTimes={availableTimes}
+        dispatch={dispatch}
+        onDateChange={handleDateChange}
+      />
     </div>
   );
 };

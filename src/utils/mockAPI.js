@@ -18,6 +18,7 @@ const seededRandom = (seed) => {
   };
 
   const submitAPI = (formData) => {
+    console.log("Submitting data to API:", formData);
     return true;
   };
 

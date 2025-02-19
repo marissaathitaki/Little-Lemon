@@ -14,7 +14,7 @@ function Header() {
           recipes served with a modern twist.
         </p>
         <div className="header-button">
-          <Button to="/Booking">Book a table</Button>
+          <Button to="/reservations">Book a table</Button>
         </div>
       </div>
       <div className="banner-image">

@@ -1,18 +1,21 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import Button from "./Button";
 import "../styles/Booking.css";
-import { fetchAPI } from "../utils/mockAPI"; // Import the fetchAPI function
+import { fetchAPI, submitAPI } from "../utils/mockAPI";
 
 function BookingForm({ availableTimes, dispatch }) {
   const [firstName, setFirstName] = useState({ value: "", isTouched: false });
   const [lastName, setLastName] = useState({ value: "", isTouched: false });
   const [selectedDate, setSelectedDate] = useState("");
   const [selectedTime, setSelectedTime] = useState("");
-  const [occasion, setOccasion] = useState("");
+  const [occasion, setOccasion] = useState("No occasion");
   const [email, setEmail] = useState({ value: "", isTouched: false });
   const [phone, setPhone] = useState({ value: "", isTouched: false });
   const [number, setNumber] = useState("1");
   const [availableTimesForDate, setAvailableTimesForDate] = useState([]);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (selectedDate) {
@@ -24,11 +27,12 @@ function BookingForm({ availableTimes, dispatch }) {
 
   const getIsFormValid = () => {
     return (
-      firstName.value &&
-      lastName.value &&
+      firstName.value.trim() !== "" &&
+      lastName.value.trim() !== "" &&
+      selectedDate !== "" &&
+      selectedTime !== "" &&
       validateEmail(email.value) &&
-      phone.value &&
-      lastName.value.length >= 3
+      phone.value.trim() !== ""
     );
   };
 
@@ -42,11 +46,32 @@ function BookingForm({ availableTimes, dispatch }) {
     setEmail({ value: "", isTouched: false });
     setSelectedDate("");
     setSelectedTime("");
+    setOccasion("No occasion");
+    setPhone({ value: "", isTouched: false });
+    setNumber("1");
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    alert("Booking confirmed!");
+
+    const formData = {
+      firstName: firstName.value,
+      lastName: lastName.value,
+      email: email.value,
+      phone: phone.value,
+      number: number,
+      date: selectedDate,
+      time: selectedTime,
+      occasion: occasion,
+    };
+
+    const isSuccess = submitAPI(formData);
+    if (isSuccess) {
+      navigate("/confirmation", { state: formData }); // Redirect with data
+    } else {
+      alert("Something went wrong. Please try again.");
+    }
+
     clearForm();
   };
 
@@ -63,10 +88,11 @@ function BookingForm({ availableTimes, dispatch }) {
         <div className="form-section">
           <div className="date-column">
             <div className="date">
-              <label>
+              <label htmlFor="date">
                 Select date <sup>*</sup>
               </label>
               <input
+                id="date"
                 type="date"
                 value={selectedDate}
                 onChange={handleDateChange}
@@ -74,10 +100,11 @@ function BookingForm({ availableTimes, dispatch }) {
               />
             </div>
             <div className="people">
-              <label>
+              <label htmlFor="people">
                 Number of people <sup>*</sup>
               </label>
               <select
+                id="people"
                 className="number"
                 value={number}
                 onChange={(e) => setNumber(e.target.value)}
@@ -90,10 +117,11 @@ function BookingForm({ availableTimes, dispatch }) {
               </select>
             </div>
             <div className="first">
-              <label>
+              <label htmlFor="first">
                 First name <sup>*</sup>
               </label>
               <input
+                id="first"
                 value={firstName.value}
                 onChange={(e) =>
                   setFirstName({ ...firstName, value: e.target.value })
@@ -102,10 +130,13 @@ function BookingForm({ availableTimes, dispatch }) {
               />
             </div>
             <div className="email">
-              <label>
+              <label htmlFor="email">
                 Email address <sup>*</sup>
               </label>
               <input
+                id="email"
+                type="email"
+                autoComplete="email"
                 value={email.value}
                 onChange={(e) => setEmail({ ...email, value: e.target.value })}
               />
@@ -113,10 +144,11 @@ function BookingForm({ availableTimes, dispatch }) {
           </div>
           <div className="time-column">
             <div className="time">
-              <label>
+              <label htmlFor="time">
                 Select time <sup>*</sup>
               </label>
               <select
+                id="time"
                 className="time-input"
                 value={selectedTime}
                 onChange={(e) => setSelectedTime(e.target.value)}
@@ -132,13 +164,14 @@ function BookingForm({ availableTimes, dispatch }) {
               </select>
             </div>
             <div className="occasion">
-              <label>Occasion </label>
+              <label htmlFor="occasion">Occasion </label>
               <select
+                id="occasion"
                 className="occasion-input"
                 value={occasion}
                 onChange={(e) => setOccasion(e.target.value)}
               >
-                <option>Not a special occasion</option>
+                <option>No occasion</option>
                 <option>Birthday</option>
                 <option>Anniversary</option>
                 <option>Proposal</option>
@@ -146,10 +179,11 @@ function BookingForm({ availableTimes, dispatch }) {
               </select>
             </div>
             <div className="last">
-              <label>
+              <label htmlFor="last">
                 Last name <sup>*</sup>
               </label>
               <input
+                id="last"
                 value={lastName.value}
                 onChange={(e) =>
                   setLastName({ ...lastName, value: e.target.value })
@@ -158,17 +192,24 @@ function BookingForm({ availableTimes, dispatch }) {
               />
             </div>
             <div className="phone">
-              <label>
+              <label htmlFor="phone">
                 Phone Number <sup>*</sup>
               </label>
               <input
+                id="phone"
                 value={phone.value}
+                type="tel"
+                autoComplete="tel"
                 onChange={(e) => setPhone({ ...phone, value: e.target.value })}
               />
             </div>
           </div>
           <div className="buttons">
-            <Button type="submit" disabled={!getIsFormValid()}>
+            <Button
+              type="submit"
+              disabled={!getIsFormValid()}
+              onClick={handleSubmit}
+            >
               Submit
             </Button>
             <Button type="button" onClick={clearForm}>
