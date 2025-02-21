@@ -445,6 +445,7 @@ function BookingForm({ dispatch }) {
                 value={selectedDate}
                 onChange={handleDateChange}
                 min={currentDate}
+                aria-label="Select a date"
                 required
               />
             </div>
@@ -456,6 +457,7 @@ function BookingForm({ dispatch }) {
                 id="people"
                 className="number"
                 value={number}
+                aria-label="Select number of people"
                 onChange={(e) => setNumber(e.target.value)}
               >
                 {[...Array(12)].map((_, i) => (
@@ -472,6 +474,7 @@ function BookingForm({ dispatch }) {
               <input
                 id="first"
                 value={firstName.value}
+                aria-label="Enter your first name"
                 onChange={(e) =>
                   handleInputChange("firstName", e.target.value, setFirstName)
                 }
@@ -491,6 +494,7 @@ function BookingForm({ dispatch }) {
                 id="email"
                 type="email"
                 value={email.value}
+                aria-label="Enter your email"
                 onChange={(e) =>
                   handleInputChange("email", e.target.value, setEmail)
                 }
@@ -508,6 +512,7 @@ function BookingForm({ dispatch }) {
                 id="time"
                 className="time-input"
                 value={selectedTime}
+                aria-label="Select a time"
                 onChange={(e) => setSelectedTime(e.target.value)}
                 required
                 disabled={!selectedDate}
@@ -526,6 +531,7 @@ function BookingForm({ dispatch }) {
                 id="occasion"
                 className="occasion-input"
                 value={occasion}
+                aria-label="Select an occasion"
                 onChange={(e) => setOccasion(e.target.value)}
               >
                 <option>No occasion</option>
@@ -542,6 +548,7 @@ function BookingForm({ dispatch }) {
               <input
                 id="last"
                 value={lastName.value}
+                aria-label="Enter your last name"
                 onChange={(e) =>
                   handleInputChange("lastName", e.target.value, setLastName)
                 }
@@ -561,6 +568,7 @@ function BookingForm({ dispatch }) {
                 id="phone"
                 type="tel"
                 value={phone.value}
+                aria-label="Enter your phone number"
                 onChange={(e) =>
                   handleInputChange("phone", e.target.value, setPhone)
                 }
@@ -574,10 +582,15 @@ function BookingForm({ dispatch }) {
               type="submit"
               disabled={!getIsFormValid()}
               onClick={handleSubmit}
+              aria-label="Submit the form"
             >
               Submit
             </Button>
-            <Button type="button" onClick={clearForm}>
+            <Button
+              type="button"
+              onClick={clearForm}
+              aria-label="Clear the form"
+            >
               Cancel
             </Button>
           </div>
